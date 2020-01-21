@@ -43,8 +43,7 @@ class CrawlThread(threading.Thread):
                 # look for the "ei" value in the HTML document
                 htmldom_main = etree.HTML(rp_main)
                 str_contain_ei = htmldom_main.xpath("//script/text()")[0]
-                aux_str = str_contain_ei[str_contain_ei.find("kscs:\'") + len("kscs:\'"):str_contain_ei.find("\',",str_contain_ei.find("kscs:\'"))]
-                ei_value = aux_str[aux_str.find("_") + 1:]
+                ei_value = str_contain_ei[(str_contain_ei.find("{kEI:\'") + len("{kEI:\'")): str_contain_ei.find("\',",str_contain_ei.find("kscs:\'") + len("{kEI:\'") + 1)]
                 # look for the data-ved value in the HTML document
                 ved_value = htmldom_main.xpath("//div[@id=\"rg\"]/@data-ved")[0]
                 # Generate the urls of the lists of images
