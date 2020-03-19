@@ -43,9 +43,9 @@ class CrawlThread(threading.Thread):
                 # look for the "ei" value in the HTML document
                 htmldom_main = etree.HTML(rp_main)
                 str_contain_ei = htmldom_main.xpath("//script/text()")[0]
-                ei_value = str_contain_ei[(str_contain_ei.find("{kEI:\'") + len("{kEI:\'")): str_contain_ei.find("\',",str_contain_ei.find("kscs:\'") + len("{kEI:\'") + 1)]
+                ei_value = str_contain_ei[(str_contain_ei.find("\"uS02ke\":\"") + len("\"uS02ke\":\"")): str_contain_ei.find("\",\"vXmutd\"")]
                 # look for the data-ved value in the HTML document
-                ved_value = htmldom_main.xpath("//div[@id=\"rg\"]/@data-ved")[0]
+                ved_value = htmldom_main.xpath("//div[@class=\"DZjDQ\"]/@data-ved")[0]
                 # Generate the urls of the lists of images
                 img_list_url = "https://www.google.com/search?ei=" + ei_value + "&q=" + self.query + "&tbm=isch&ved=" + ved_value + "&ijn=" + str(ijn) + "&start=" + str(img_start) + "&asearch=ichunk&async=_id:rg_s,_pms:s,_jsfs:Ffpdje,_fmt:pc"
                 print(img_list_url)
@@ -87,7 +87,7 @@ class ParseThread(threading.Thread):
         print(self.ThreadName + " ends")
 
 
-def GoogleImageDownloader(query, NumberWanted):
+def google_image_downloader(query, NumberWanted):
     """
     Search for and download images from Google
     :param query (str): Keyword of which images you want to search for
@@ -143,4 +143,4 @@ def GoogleImageDownloader(query, NumberWanted):
 
 if __name__ == "__main__":
     for item in OueryList:
-      GoogleImageDownloader(item, 999)
+      google_image_downloader(item, 999)
